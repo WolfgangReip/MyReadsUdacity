@@ -16,6 +16,7 @@ const Bookshelf = ({ shelfName, books, onChangeShelf }) => {
                                     <Book
                                         book={book}
                                         onChangeShelf={onChangeShelf}
+                                        books={books}
                                     />
                                 </li>
                             );

@@ -10,15 +10,23 @@ function App() {
 
     const changeShelf = (book) => {
         return function (e) {
-            setBooks((books) =>
-                books.map((item) => {
-                    if (item.id === book.id) {
-                        BooksAPI.update(item, e.target.value);
-                        return { ...item, shelf: e.target.value };
-                    }
-                    return item;
-                })
-            );
+            const isBookInBooks = books.find((item) => item.id === book.id);
+
+            if (isBookInBooks) {
+                setBooks((books) =>
+                    books.map((item) => {
+                        if (item.id === book.id) {
+                            BooksAPI.update(item, e.target.value);
+                            return { ...item, shelf: e.target.value };
+                        }
+                        return item;
+                    })
+                );
+            } else {
+                book.shelf = e.target.value;
+                BooksAPI.update(book, e.target.value);
+                setBooks([...books, book]);
+            }
         };
     };
 
