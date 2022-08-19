@@ -6,7 +6,9 @@ const BookShelfChanger = ({ book, onChangeShelf, books }) => {
     return (
         <div className='book-shelf-changer'>
             <select
-                defaultValue={book.shelf ? book.shelf : (book.shelf = 'none')}
+                defaultValue={
+                    book.shelf ? book.shelf : book ? (book.shelf = 'none') : ''
+                }
                 onChange={onChangeShelf(book)}>
                 <option disabled>Move to...</option>
                 <option value='currentlyReading'>Currently Reading</option>
